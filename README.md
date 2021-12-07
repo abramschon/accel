@@ -16,7 +16,7 @@ To start the virtual environment again:
 
 ### Creating symbolic links
 It may be useful to create symbolic links to the shared data folder. This can be done using:
-`ln -s <cdtshared_path> <convenient_path_name>`
+- `ln -s <cdtshared_path> <convenient_path_name>`
 
 ### Adding requirements
 Once you have pip installed packages, you can add them to the requirements.txt file using `pip freeze > requirements.txt`
