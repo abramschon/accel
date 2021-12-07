@@ -7,16 +7,16 @@ As a first task, we frame this as a regression problem, using measurements taken
 
 ### Virtual environemnts
 To initialise a virtual environment:
-`conda create -n accel python=3.9` (or 3.8 depending on what is on the VMs)
-`conda activate accel`
-`pip install -e .`
+- `conda create -n accel python=3.9` (or 3.8 depending on what is on the VMs)
+- `conda activate accel`
+- `pip install -e .`
 
 To start the virtual environment again:
-`conda activate accel`
+- `conda activate accel`
 
 ### Creating symbolic links
 It may be useful to create symbolic links to the shared data folder. This can be done using:
-`ln -s <cdtshared_path> <convenient_path_name>`
+- `ln -s <cdtshared_path> <convenient_path_name>`
 
 ### Adding requirements
 Once you have pip installed packages, you can add them to the requirements.txt file using `pip freeze > requirements.txt`
