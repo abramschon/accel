@@ -18,6 +18,8 @@ To start the virtual environment again:
 It may be useful to create symbolic links to the shared data folder. This can be done using:
 - `ln -s <cdtshared_path> <convenient_path_name>`
 
+For example, `ln -s /cdtshared/wearables/health_data_files/ health_data`.
+
 ### Adding requirements
 Once you have pip installed packages, you can add them to the requirements.txt file using `pip freeze > requirements.txt`
 
