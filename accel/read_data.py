@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
@@ -25,3 +26,8 @@ def dataset_split(X : pd.DataFrame,
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=perc_test)
     return X_train, X_test, y_train, y_test
 
+def to_numpy_cont(X : pd.DataFrame):
+    """ 
+       Converts a pandas Dataframe into a C contiguous numpy array
+    """
+    return np.ascontiguousarray(X.to_numpy())
