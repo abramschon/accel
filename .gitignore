@@ -1,3 +1,4 @@
+*.ipynb_checkpoints
 accel.egg-info/*
 *__pycache__*
 *.DS_Store
