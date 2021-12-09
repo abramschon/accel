@@ -23,6 +23,7 @@ DIETARY = {'Cooked vegetable intake | Instance 0',
            'Water intake | Instance 0'}
 
 SOCIO = {'Average total household income before tax | Instance 0',
+         'Attendance/disability/mobility allowance | Instance 0',
          'Number of vehicles in household | Instance 0',
          'Qualifications | Instance 0',
          'Type of accommodation lived in | Instance 0',
@@ -41,7 +42,6 @@ DEMO = {'Age at recruitment',
 
 PHYSICAL = {'Above moderate/vigorous recommendation | Instance 0',
             'Above moderate/vigorous/walking recommendation | Instance 0',
-            'Attendance/disability/mobility allowance | Instance 0',
             'Duration of walks | Instance 0',
             'Frequency of stair climbing in last 4 weeks | Instance 0',
             'Frequency of tiredness / lethargy in last 2 weeks | Instance 0',
