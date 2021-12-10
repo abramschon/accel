@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 def prep_data(file_path : str,
-              sets : list,
+              sets : list = None,
               train_perc : float = 0.7,
               y_label : str = "acc.overall.avg",
               y_cutoff : float = 100,
@@ -21,7 +21,10 @@ def prep_data(file_path : str,
     # select X, y below y_cutoff
     all_y = df[y_label]
     y = all_y[all_y<y_cutoff]
-    all_X = select_sets(df, *sets)
+    if sets == None:
+        all_X = df[set(df.columns)-{y_label}]
+    else:
+        all_X = select_sets(df, *sets)
     X = all_X[all_y<y_cutoff]
     
     # apply custom encodings
