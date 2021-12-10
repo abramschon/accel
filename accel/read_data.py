@@ -149,6 +149,12 @@ def custom_encodings(df : pd.DataFrame):
             df =  encode_sensitivity(df)
         elif col == "Worrier / anxious feelings | Instance 0":
             df = encode_anxiety(df)
+        elif col == "Average total household income before tax | Instance 0":
+            df = encode_household_income(df)
+        elif col == "Number of vehicles in household | Instance 0":
+            df = encode_num_vehicles(df)
+        elif col == "Frequency of stair climbing in last 4 weeks | Instance 0":
+            df = encode_stair_climbing(df)
     return df
 
 # CUSTOM ENCODINGS
@@ -358,4 +364,53 @@ def encode_anxiety(df):
     )
     df["Worrier / anxious feelings | Instance 0"] = pd.to_numeric(df["Worrier / anxious feelings | Instance 0"])
     return df
+
+# Average total household income before tax | Instance 0
+def encode_household_income(df):
+    df["Average total household income before tax | Instance 0"].replace(
+        {"Less than 18,000" : 1,
+         "18,000 to 30,999": 2,
+         "31,000 to 51,999" : 3,
+         "52,000 to 100,000": 4,
+         "Greater than 100,000": 5,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Average total household income before tax | Instance 0"] = pd.to_numeric(df["Average total household income before tax | Instance 0"])
+    return df
+
+# Number of vehicles in household | Instance 0
+def encode_num_vehicles(df):
+    df["Number of vehicles in household | Instance 0"].replace(
+        {"None": 0,
+         "One" : 1,
+         "Two": 2,
+         "Three" : 3,
+         "Four or more": 4,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Number of vehicles in household | Instance 0"] = pd.to_numeric(df["Number of vehicles in household | Instance 0"])
+    return df
+
+# Frequency of stair climbing in last 4 weeks | Instance 0
+def encode_stair_climbing(df):
+    df["Frequency of stair climbing in last 4 weeks | Instance 0"].replace(
+        {"None": 0,
+         "1-5 times a day" : 5,
+         "6-10 times a day": 10,
+         "11-15 times a day" : 15,
+         "16-20 times a day" : 20,
+         "More than 20 times a day": 30,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Frequency of stair climbing in last 4 weeks | Instance 0"] = pd.to_numeric(df["Frequency of stair climbing in last 4 weeks | Instance 0"])
+    return df
+
+
+
 
