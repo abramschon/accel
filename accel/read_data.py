@@ -185,7 +185,7 @@ def encode_added_salt(df):
     return df
 
 # Water intake | Instance 0
-def water_intake(df): 
+def encode_water_intake(df): 
     df["Water intake | Instance 0"].replace(
         {"Less than one" : 0,
          "Prefer not to answer": np.nan,
@@ -195,3 +195,62 @@ def water_intake(df):
     df["Water intake | Instance 0"] = pd.to_numeric(df["Water intake | Instance 0"])
     return df
 
+# Irritability | Instance 0 
+def encode_irritability(df): 
+    df["Irritability | Instance 0"].replace(
+        {"No" : 0,
+         "Yes": 1,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Irritability | Instance 0"] = pd.to_numeric(df["Irritability | Instance 0"])
+    return df
+
+# Miserableness | Instance 0
+def encode_mis(df):
+    df["Miserableness | Instance 0"].replace(
+        {"No" : 0,
+         "Yes": 1,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Miserableness | Instance 0"] = pd.to_numeric(df["Miserableness | Instance 0"])
+    return df
+
+# Mood swings | Instance 0
+def encode_mood(df):
+    df["Mood swings | Instance 0"].replace(
+        {"No" : 0,
+         "Yes": 1,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Mood swings | Instance 0"] = pd.to_numeric(df["Mood swings | Instance 0"])
+    return df
+
+# Sensitivity / hurt feelings | Instance 0
+def encode_sensitivity(df):
+    df["Sensitivity / hurt feelings | Instance 0"].replace(
+        {"No" : 0,
+         "Yes": 1,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Sensitivity / hurt feelings | Instance 0"] = pd.to_numeric(df["Sensitivity / hurt feelings | Instance 0"])
+    return df
+
+# Worrier / anxious feelings | Instance 0
+def encode_anxiety(df):
+    df["Worrier / anxious feelings | Instance 0"].replace(
+        {"No" : 0,
+         "Yes": 1,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Worrier / anxious feelings | Instance 0"] = pd.to_numeric(df["Worrier / anxious feelings | Instance 0"])
+    return df
