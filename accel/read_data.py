@@ -112,6 +112,7 @@ def encode_time_tele(df : pd.DataFrame):
     df["Time spent watching television (TV) | Instance 0"] = pd.to_numeric(df["Time spent watching television (TV) | Instance 0"])
     return df
 
+
 # Tea intake
 def encode_tea_intake(df: pd.DataFrame):
     df["Tea intake"].replace(
@@ -254,3 +255,4 @@ def encode_anxiety(df):
     )
     df["Worrier / anxious feelings | Instance 0"] = pd.to_numeric(df["Worrier / anxious feelings | Instance 0"])
     return df
+
