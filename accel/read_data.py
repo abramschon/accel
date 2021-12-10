@@ -122,7 +122,30 @@ def custom_encodings(df : pd.DataFrame):
             df = encode_time_outdoors_winter(df)
         elif col == "Time spent watching television (TV) | Instance 0":
             df = encode_time_tele(df)
-    
+        elif col == "Tea intake":
+            df = encode_tea_intake(df)
+        elif col == "Cooked vegetable intake | Instance 0":
+            df = encode_cooked_veg_intake(df)
+        elif col == "Fresh fruit intake | Instance 0":
+            df = encode_fresh_fruit_intake(df)
+        elif col == "Oily fish intake | Instance 0":
+            df = encode_oily_fish(df)
+        elif col == "Salad / raw vegetable intake | Instance 0":
+            df = encode_salad_intake(df)
+        elif col == "Salt added to food":
+            df = encode_added_salt(df)
+        elif col == "Water intake | Instance 0":
+            df = encode_added_salt(df)
+        elif col == "Irritability | Instance 0":
+            df = encode_irritability(df)
+        elif col == "Miserableness | Instance 0":
+            df = encode_mis(df)
+        elif col == "Mood swings | Instance 0":
+            df = encode_mood(df)
+        elif col == "Sensitivity / hurt feelings | Instance 0":
+            df =  encode_sensitivity(df)
+        elif col == "Worrier / anxious feelings | Instance 0":
+            df = encode_anxiety(df)
     return df
 
 # CUSTOM ENCODINGS
