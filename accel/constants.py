@@ -12,7 +12,8 @@ EMOTIONAL = {'Irritability | Instance 0',
              'Miserableness | Instance 0',
              'Mood swings | Instance 0',
              'Sensitivity / hurt feelings | Instance 0',
-             'Worrier / anxious feelings | Instance 0'}
+             'Worrier / anxious feelings | Instance 0',
+             'Frequency of tiredness / lethargy in last 2 weeks | Instance 0'}
 
 DIETARY = {'Cooked vegetable intake | Instance 0',
            'Fresh fruit intake | Instance 0',
@@ -44,7 +45,6 @@ PHYSICAL = {'Above moderate/vigorous recommendation | Instance 0',
             'Above moderate/vigorous/walking recommendation | Instance 0',
             'Duration of walks | Instance 0',
             'Frequency of stair climbing in last 4 weeks | Instance 0',
-            'Frequency of tiredness / lethargy in last 2 weeks | Instance 0',
             'IPAQ activity group | Instance 0',
             'Body mass index (BMI) | Instance 0',
             'MET minutes per week for moderate activity | Instance 0',
