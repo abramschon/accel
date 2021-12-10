@@ -189,3 +189,147 @@ def encode_time_tele(df : pd.DataFrame):
     df["Time spent watching television (TV) | Instance 0"] = pd.to_numeric(df["Time spent watching television (TV) | Instance 0"])
     return df
 
+
+# Tea intake
+def encode_tea_intake(df: pd.DataFrame):
+    df["Tea intake"].replace(
+        {"Less than one" : 0,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Tea intake"] = pd.to_numeric(df["Tea intake"])
+    return df
+
+#Cooked vegetable intake | Instance 0
+def encode_cooked_veg_intake(df):
+    df["Cooked vegetable intake | Instance 0"].replace(
+        {"Less than one" : 0,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Cooked vegetable intake | Instance 0"] = pd.to_numeric(df["Cooked vegetable intake | Instance 0"])
+    return df
+
+#Fresh fruit intake | Instance 0
+def encode_fresh_fruit_intake(df):
+    df["Fresh fruit intake | Instance 0"].replace(
+        {"Less than one" : 0,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Fresh fruit intake | Instance 0"] = pd.to_numeric(df["Fresh fruit intake | Instance 0"])
+    return df
+
+# Oily fish intake | Instance 0
+def encode_oily_fish(df):
+    df["Oily fish intake | Instance 0"].replace(
+        {"Never" : 0,
+         "Less than once a week": 0.5,
+         "Once a week": 1,
+         "2-4 times a week": 3,
+         "5-6 times a week": 5.5,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Oily fish intake | Instance 0"] = pd.to_numeric(df["Oily fish intake | Instance 0"])
+    return df
+
+#Salad / raw vegetable intake | Instance 0
+def encode_salad_intake(df):
+    df["Salad / raw vegetable intake | Instance 0"].replace(
+        {"Less than one" : 0,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Salad / raw vegetable intake | Instance 0"] = pd.to_numeric(df["Salad / raw vegetable intake | Instance 0"])
+    return df
+
+# Salt added to food
+def encode_added_salt(df):
+    df["Salt added to food"].replace(
+        {"Never/rarely" : 0,
+         "Sometimes": 1,
+         "Usually": 2,
+         "Always": 3,
+         "Prefer not to answer": np.nan,
+        }, inplace=True
+    )
+    df["Salt added to food"] = pd.to_numeric(df["Salt added to food"])
+    return df
+
+# Water intake | Instance 0
+def encode_water_intake(df): 
+    df["Water intake | Instance 0"].replace(
+        {"Less than one" : 0,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Water intake | Instance 0"] = pd.to_numeric(df["Water intake | Instance 0"])
+    return df
+
+# Irritability | Instance 0 
+def encode_irritability(df): 
+    df["Irritability | Instance 0"].replace(
+        {"No" : 0,
+         "Yes": 1,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Irritability | Instance 0"] = pd.to_numeric(df["Irritability | Instance 0"])
+    return df
+
+# Miserableness | Instance 0
+def encode_mis(df):
+    df["Miserableness | Instance 0"].replace(
+        {"No" : 0,
+         "Yes": 1,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Miserableness | Instance 0"] = pd.to_numeric(df["Miserableness | Instance 0"])
+    return df
+
+# Mood swings | Instance 0
+def encode_mood(df):
+    df["Mood swings | Instance 0"].replace(
+        {"No" : 0,
+         "Yes": 1,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Mood swings | Instance 0"] = pd.to_numeric(df["Mood swings | Instance 0"])
+    return df
+
+# Sensitivity / hurt feelings | Instance 0
+def encode_sensitivity(df):
+    df["Sensitivity / hurt feelings | Instance 0"].replace(
+        {"No" : 0,
+         "Yes": 1,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Sensitivity / hurt feelings | Instance 0"] = pd.to_numeric(df["Sensitivity / hurt feelings | Instance 0"])
+    return df
+
+# Worrier / anxious feelings | Instance 0
+def encode_anxiety(df):
+    df["Worrier / anxious feelings | Instance 0"].replace(
+        {"No" : 0,
+         "Yes": 1,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Worrier / anxious feelings | Instance 0"] = pd.to_numeric(df["Worrier / anxious feelings | Instance 0"])
+    return df
+
