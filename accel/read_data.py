@@ -152,6 +152,11 @@ def custom_encodings(df : pd.DataFrame):
             df = encode_num_vehicles(df)
         elif col == "Frequency of stair climbing in last 4 weeks | Instance 0":
             df = encode_stair_climbing(df)
+        elif col == "Frequency of tiredness / lethargy in last 2 weeks | Instance 0":
+            df = encode_tiredness(df)
+        elif col == "IPAQ activity group | Instance 0":
+            df = encode_ipaq(df)
+        
     return df
 
 # CUSTOM ENCODINGS
@@ -408,6 +413,32 @@ def encode_stair_climbing(df):
     df["Frequency of stair climbing in last 4 weeks | Instance 0"] = pd.to_numeric(df["Frequency of stair climbing in last 4 weeks | Instance 0"])
     return df
 
+# Frequency of tiredness / lethargy in last 2 weeks | Instance 0
+def encode_tiredness(df):
+    df["Frequency of tiredness / lethargy in last 2 weeks | Instance 0"].replace(
+        {"Not at all": 0,
+         "Several days" : 4,
+         "More than half the days": 7,
+         "Nearly every day" : 12,
+         "Prefer not to answer": np.nan,
+         "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Frequency of tiredness / lethargy in last 2 weeks | Instance 0"] = pd.to_numeric(df["Frequency of tiredness / lethargy in last 2 weeks | Instance 0"])
+    return df
+
+#IPAQ activity group | Instance 0
+def encode_ipaq(df):
+    df["IPAQ activity group | Instance 0"].replace(
+        {"low": 1,
+         "moderate": 2,
+         "high": 3
+        }, inplace=True
+    )
+    df["IPAQ activity group | Instance 0"] = pd.to_numeric(df["IPAQ activity group | Instance 0"])
+    return df
+
+#
 
 
 
