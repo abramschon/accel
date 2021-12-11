@@ -29,7 +29,6 @@ def prep_data(file_path : str,
     elif len(sets) == 1:
         all_X = df[sets[0]]
     else: # multiple sets
-        print(len(sets))
         all_X = select_sets(df, *sets)
     X = all_X[all_y<y_cutoff]
     
