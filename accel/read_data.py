@@ -461,9 +461,11 @@ def encode_ipaq(df):
 #Alcohol drinker status | Instance 0
 def encode_alc_drinker(df):
     df["Alcohol drinker status | Instance 0"].replace(
-        {"low": 1,
-         "moderate": 2,
-         "high": 3
+        {
+            "Never" : "Never",
+            "Current": "Current",
+            "Previous":"Previous",
+            "Prefer not to answer": np.nan
         }, inplace=True
     )
     df["Alcohol drinker status | Instance 0"] = pd.to_numeric(df["Alcohol drinker status | Instance 0"])
