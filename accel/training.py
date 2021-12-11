@@ -16,13 +16,14 @@ def model_tune(model : "SKLearn model",
                param_grid : dict, 
                X_train : pd.DataFrame, 
                y_train : pd.Series,
-               n_iter : int = 30):
+               n_iter : int = 30,
+               cv : int = 5):
     """
         Uses bayesian optimisation to explore the parameter space and scores each set of parameters using 
-        5-fold CV. Returns the best model with the best found parameters
+        CV. Returns the best model with the best found parameters
     """
     # Tune the model with Bayesian optimisation
-    opt = BayesSearchCV(model, param_grid, n_iter=n_iter, cv=5, verbose=1)
+    opt = BayesSearchCV(model, param_grid, n_iter=n_iter, cv=cv, verbose=1)
     opt.fit(X_train, y_train)
     # With the following parameter combination being optimal
     print("Best parameter combo:", opt.best_params_)
