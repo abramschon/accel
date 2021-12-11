@@ -445,7 +445,7 @@ def encode_alc_drinker(df):
         {
             "Never" : "Never",
             "Current": "Current",
-            "previous":"Previous",
+            "Previous":"Previous",
             "Prefer not to answer": np.nan
         }, inplace=True
     )
