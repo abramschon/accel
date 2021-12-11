@@ -23,7 +23,10 @@ def prep_data(file_path : str,
     y = all_y[all_y<y_cutoff]
     if sets == None:
         all_X = df[set(df.columns)-{y_label}]
-    else:
+    elif len(sets) == 1:
+        all_X = df[sets[0]]
+    else: # multiple sets
+        print(len(sets))
         all_X = select_sets(df, *sets)
     X = all_X[all_y<y_cutoff]
     
@@ -45,6 +48,11 @@ def prep_data(file_path : str,
     if one_hot:
         X_train = pd.get_dummies(X_train, columns=cat_cols)
         X_val_test = pd.get_dummies(X_val_test, columns=cat_cols)
+        # ensure they have the same columns ! (think of better strategy for handling this)
+        # this is because there could be categorical columns which disappear when we get dummies
+        common_cols = set.intersection(set(X_train.columns), set(X_val_test.columns))
+        X_train = X_train[common_cols]
+        X_val_test = X_val_test[common_cols]
     
     # finally divide up X_val_test 
     X_val, X_test, y_val, y_test = train_test_split(X_val_test, y_val_test, train_size=0.5, random_state=seed)
@@ -56,7 +64,7 @@ def load_data(file_path : str):
     return pd.read_csv(file_path)
 
 def select_sets(df : pd.DataFrame, 
-                *sets : set, # as many as you want
+                *sets : set, # must be more than one set
                ):
     """ Selects the features in the union of the provided sets """
     union = set.union(*sets)
@@ -131,14 +139,14 @@ def custom_encodings(df : pd.DataFrame):
             df = encode_cooked_veg_intake(df)
         elif col == "Fresh fruit intake | Instance 0":
             df = encode_fresh_fruit_intake(df)
-        elif col == "Oily fish intake | Instance 0":
-            df = encode_oily_fish(df)
+#         elif col == "Oily fish intake | Instance 0":
+#             df = encode_oily_fish(df)
         elif col == "Salad / raw vegetable intake | Instance 0":
             df = encode_salad_intake(df)
         elif col == "Salt added to food":
             df = encode_added_salt(df)
         elif col == "Water intake | Instance 0":
-            df = encode_added_salt(df)
+            df = encode_water_intake(df)
         elif col == "Irritability | Instance 0":
             df = encode_irritability(df)
         elif col == "Miserableness | Instance 0":
