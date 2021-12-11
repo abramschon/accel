@@ -1,12 +1,15 @@
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
 
 def prep_data(file_path : str,
               sets : list = None,
               train_perc : float = 0.7,
               y_label : str = "acc.overall.avg",
               y_cutoff : float = 100,
+              normalise : bool = False, # whether to transform numerical variables to z-vals
               one_hot : bool = False, # whether to apply one-hot encoding to categorical variables
               seed : int = 42,
              ):
@@ -43,6 +46,12 @@ def prep_data(file_path : str,
     # !!! important not to impute means and modes from the test data!!!
     X_train, means_modes = train_mean_mode_impute(X_train, num_cols, cat_cols) # training imputation
     X_val_test = test_impute(X_val_test, means_modes) # test_val imputation using train means / modes
+    
+    # standardise numerical variables
+    if normalise:
+        scaler = StandardScaler().fit(X_train[num_cols]) # only train based on training data
+        X_train[num_cols] = scaler.transform(X_train[num_cols])
+        X_val_test[num_cols] = scaler.transform(X_val_test[num_cols])
     
     # apply one-hot encoding if desired to categorical columns (have to do this post-imputation)
     if one_hot:
