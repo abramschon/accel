@@ -265,6 +265,7 @@ def encode_oily_fish(df):
          "Once a week": 1,
          "2-4 times a week": 3,
          "5-6 times a week": 5.5,
+         "Once or more daily": 7,
          "Prefer not to answer": np.nan,
          "Do not know": np.nan
         }, inplace=True
@@ -283,9 +284,9 @@ def encode_salad_intake(df):
     df["Salad / raw vegetable intake | Instance 0"] = pd.to_numeric(df["Salad / raw vegetable intake | Instance 0"])
     return df
 
-# Salt added to food
+# Salt added to food | Instance 0
 def encode_added_salt(df):
-    df["Salt added to food"].replace(
+    df["Salt added to food | Instance 0"].replace(
         {"Never/rarely" : 0,
          "Sometimes": 1,
          "Usually": 2,
@@ -293,7 +294,7 @@ def encode_added_salt(df):
          "Prefer not to answer": np.nan,
         }, inplace=True
     )
-    df["Salt added to food"] = pd.to_numeric(df["Salt added to food"])
+    df["Salt added to food | Instance 0"] = pd.to_numeric(df["Salt added to food | Instance 0"])
     return df
 
 # Water intake | Instance 0
@@ -438,7 +439,16 @@ def encode_ipaq(df):
     df["IPAQ activity group | Instance 0"] = pd.to_numeric(df["IPAQ activity group | Instance 0"])
     return df
 
-#
+#Alcohol drinker status | Instance 0
+def encode_alc_drinker(df):
+    df["Alcohol drinker status | Instance 0"].replace(
+        {"low": 1,
+         "moderate": 2,
+         "high": 3
+        }, inplace=True
+    )
+    df["Alcohol drinker status | Instance 0"] = pd.to_numeric(df["Alcohol drinker status | Instance 0"])
+    return df
 
 
 
