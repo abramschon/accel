@@ -175,6 +175,36 @@ def custom_encodings(df : pd.DataFrame):
             df = encode_tiredness(df)
         elif col == "IPAQ activity group | Instance 0":
             df = encode_ipaq(df)
+        elif col == "Alcohol drinker status | Instance 0":
+            df = encode_alc_drinker(df)
+        elif col == "Alcohol intake frequency. | Instance 0":
+            df = encode_alc_freq(df)
+        elif col == "Length of mobile phone use | Instance 0":
+            df = encode_mob_length(df)
+        elif col == "Sleep duration | Instance 0":
+            df = encode_sleep_dur(df)
+        elif col == "Smoking status | Instance 0":
+            df = encode_smoke_stat(df)
+        elif col == "Weekly usage of mobile phone in last 3 months | Instance 0":
+            df = encode_mob_use(df)
+        elif col == "Blood clot, DVT, bronchitis, emphysema, asthma, rhinitis, eczema, allergy diagnosed by doctor | Instance 0":
+            df = encode_blood_clot(df)
+        elif col == "Cancer diagnosed by doctor | Instance 0":
+            df = encode_cancer(df)
+        elif col == "Chest pain or discomfort | Instance 0":
+            df = encode_chest_pain(df)
+        elif col == "Diabetes diagnosed by doctor | Instance 0":
+            df = encode_diabetes(df)
+        elif col == "Fractured/broken bones in last 5 years | Instance 0":
+            df = encode_bones(df)
+        elif col == "Mouth/teeth dental problems | Instance 0":
+            df = encode_dental(df)
+        elif col == "Other serious medical condition/disability diagnosed by doctor | Instance 0":
+            df = encode_other_condition(df)
+        elif col == "Overall health rating | Instance 0":
+            df = encode_health_rating(df)
+        elif col == "Vascular/heart problems diagnosed by doctor | Instance 0":
+            df = encode_heart(df)
         
     return df
 
@@ -233,6 +263,7 @@ def encode_time_outdoors_winter(df : pd.DataFrame):
     df["Time spent outdoors in winter | Instance 0"] = pd.to_numeric(df["Time spent outdoors in winter | Instance 0"])
     return df
 
+# Time spent watching television (TV) | Instance 0
 def encode_time_tele(df : pd.DataFrame):
     df["Time spent watching television (TV) | Instance 0"].replace(
         {"Less than an hour a day" : 0.5, 
@@ -462,14 +493,183 @@ def encode_ipaq(df):
 def encode_alc_drinker(df):
     df["Alcohol drinker status | Instance 0"].replace(
         {
-            "Never" : "Never",
-            "Current": "Current",
-            "Previous":"Previous",
             "Prefer not to answer": np.nan
         }, inplace=True
     )
-    df["Alcohol drinker status | Instance 0"] = pd.to_numeric(df["Alcohol drinker status | Instance 0"])
     return df
 
+# Alcohol intake frequency. | Instance 0
+def encode_alc_freq(df):
+    df["Alcohol intake frequency. | Instance 0"].replace(
+        {
+            "Never" : 0,
+            "Special occasions only": 1,
+            "One to three times a month": 2,
+            "Once or twice a week": 6,
+            "Three or four times a week": 10,
+            "Daily or almost daily": 20,
+            "Prefer not to answer": np.nan
+        }, inplace=True
+    )
+    df["Alcohol intake frequency. | Instance 0"] = pd.to_numeric(df["Alcohol intake frequency. | Instance 0"])
+    return df
 
+# Length of mobile phone use | Instance 0
+def encode_mob_length(df):
+    df["Length of mobile phone use | Instance 0"].replace(
+        {
+            "Never used mobile phone at least once per week" : 0,
+            "One year or less": 1,
+            "Two to four years": 3,
+            "Five to eight years": 6,
+            "More than eight years": 8,
+            "Do not know": np.nan,
+            "Prefer not to answer": np.nan
+        }, inplace=True
+    )
+    df["Length of mobile phone use | Instance 0"] = pd.to_numeric(df["Length of mobile phone use | Instance 0"])
+    return df
 
+# Sleep duration | Instance 0
+def encode_sleep_dur(df):
+    df["Sleep duration | Instance 0"].replace(
+        {
+            "Do not know": np.nan,
+            "Prefer not to answer": np.nan
+        }, inplace=True
+    )
+    df["Sleep duration | Instance 0"] = pd.to_numeric(df["Sleep duration | Instance 0"])
+    return df
+
+# Smoking status | Instance 0
+def encode_smoke_stat(df):
+    df["Smoking status | Instance 0"].replace(
+        {
+            "Prefer not to answer": np.nan
+        }, inplace=True
+    )
+    return df
+
+#Weekly usage of mobile phone in last 3 months | Instance 0
+def encode_mob_use(df):
+    df["Weekly usage of mobile phone in last 3 months | Instance 0"].replace(
+        {
+            "Less than 5mins": 0,
+            "5-29 mins": 0.5,
+            "30-59 mins": 1,
+            "1-3 hours": 3,
+            "4-6 hours": 6,
+            "More than 6 hours": 8,
+            "Do not know": np.nan,
+            "Prefer not to answer": np.nan
+        }, inplace=True
+    )
+    df["Weekly usage of mobile phone in last 3 months | Instance 0"] = pd.to_numeric(df["Weekly usage of mobile phone in last 3 months | Instance 0"])
+    return df
+
+# Blood clot, DVT, bronchitis, emphysema, asthma, rhinitis, eczema, allergy diagnosed by doctor | Instance 0
+def encode_blood_clot(df):
+    df["Blood clot, DVT, bronchitis, emphysema, asthma, rhinitis, eczema, allergy diagnosed by doctor | Instance 0"].replace(
+        {
+            "Prefer not to answer": np.nan
+        }, inplace=True
+    )
+    return df
+
+# Cancer diagnosed by doctor | Instance 0
+def encode_cancer(df):
+    df["Cancer diagnosed by doctor | Instance 0"].replace(
+        {
+            "Yes - you will be asked about this later by an interviewer": 1,
+            "No": 0,
+            "Do not know": np.nan,
+            "Prefer not to answer": np.nan
+        }, inplace=True
+    )
+    df["Cancer diagnosed by doctor | Instance 0"] = pd.to_numeric(df["Cancer diagnosed by doctor | Instance 0"])
+    return df
+
+# Chest pain or discomfort | Instance 0
+def encode_chest_pain(df):
+    df["Chest pain or discomfort | Instance 0"].replace(
+        {
+            "Yes": 1,
+            "No": 0,
+            "Do not know": np.nan,
+            "Prefer not to answer": np.nan
+        }, inplace=True
+    )
+    df["Chest pain or discomfort | Instance 0"] = pd.to_numeric(df["Chest pain or discomfort | Instance 0"])
+    return df
+
+# Diabetes diagnosed by doctor | Instance 0
+def encode_diabetes(df):
+    df["Diabetes diagnosed by doctor | Instance 0"].replace(
+        {
+            "Yes": 1,
+            "No": 0,
+            "Do not know": np.nan,
+            "Prefer not to answer": np.nan
+        }, inplace=True
+    )
+    df["Diabetes diagnosed by doctor | Instance 0"] = pd.to_numeric(df["Diabetes diagnosed by doctor | Instance 0"])
+    return df
+
+# Fractured/broken bones in last 5 years | Instance 0
+def encode_bones(df):
+    df["Fractured/broken bones in last 5 years | Instance 0"].replace(
+        {
+            "Yes": 1,
+            "No": 0,
+            "Do not know": np.nan,
+            "Prefer not to answer": np.nan
+        }, inplace=True
+    )
+    df["Fractured/broken bones in last 5 years | Instance 0"] = pd.to_numeric(df["Fractured/broken bones in last 5 years | Instance 0"])
+    return df
+
+#Mouth/teeth dental problems | Instance 0
+def encode_dental(df):
+    df["Mouth/teeth dental problems | Instance 0"].replace(
+        {
+            "Prefer not to answer": np.nan
+        }, inplace=True
+    )
+    return df
+
+# Other serious medical condition/disability diagnosed by doctor | Instance 0
+def encode_other_condition(df):
+    df["Other serious medical condition/disability diagnosed by doctor | Instance 0"].replace(
+        {
+            "Yes - you will be asked about this later by an interviewer": 1,
+            "No": 0,
+            "Do not know": np.nan,
+            "Prefer not to answer": np.nan
+        }, inplace=True
+    )
+    df["Other serious medical condition/disability diagnosed by doctor | Instance 0"] = pd.to_numeric(df["Other serious medical condition/disability diagnosed by doctor | Instance 0"])
+    return df
+
+# Overall health rating | Instance 0
+def encode_health_rating(df):
+    df["Overall health rating | Instance 0"].replace(
+        {
+            "Excellent": 4,
+            "Good": 3,
+            "Fair": 2,
+            "Poor": 1,
+            "Do not know": np.nan,
+            "Prefer not to answer": np.nan
+        }, inplace=True
+    )
+    df["Overall health rating | Instance 0"] = pd.to_numeric(df["Overall health rating | Instance 0"])
+    return df
+
+#Vascular/heart problems diagnosed by doctor | Instance 0
+def encode_heart(df):
+    df["Vascular/heart problems diagnosed by doctor | Instance 0"].replace(
+        {
+            "Prefer not to answer": np.nan
+        }, inplace=True
+    )
+    return df
