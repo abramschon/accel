@@ -82,4 +82,12 @@ OTHER = {'Age started wearing glasses or contact lenses | Instance 0',
          'How are people in household related to participant | Instance 0',
          'Number in household | Instance 0',
          'Wears glasses or contact lenses | Instance 0'}
+
+FROM_PAPER = {'Age at recruitment',
+              'Body mass index (BMI) | Instance 0',
+              'Time spent watching television (TV) | Instance 0',
+              'Time spent using computer | Instance 0',
+              'Sleep duration | Instance 0',
+              'Above moderate/vigorous recommendation | Instance 0',
+              'Above moderate/vigorous/walking recommendation | Instance 0'}
             
