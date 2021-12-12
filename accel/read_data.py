@@ -186,7 +186,19 @@ def custom_encodings(df : pd.DataFrame):
             df = encode_health_rating(df)
         elif col == "Vascular/heart problems diagnosed by doctor | Instance 0":
             df = encode_heart(df)
-        
+        elif col == "Age started wearing glasses or contact lenses":
+            df = encode_glasses_age(df)
+        elif col == "Breastfed as a baby | Instance 0":
+            df = encode_breastfed(df)
+        elif col == "Getting up in morning | Instance 0":
+            df = encode_getting_up(df)
+        elif col == "How are people in household related to participant | Instance 0":
+            df = encode_household_relations(df)
+        elif col == "Number in household | Instance 0":
+            df = encode_num_in_household(df)
+        elif col == "Wears glasses or contact lenses | Instance 0":
+            df = encode_glasses(df)
+
     return df
 
 # CUSTOM ENCODINGS
@@ -653,4 +665,76 @@ def encode_heart(df):
             "Prefer not to answer": np.nan
         }, inplace=True
     )
+    return df
+
+# Age started wearing glasses or contact lenses | Instance 0
+def encode_glasses_age(df):
+    df["Age started wearing glasses or contact lenses | Instance 0"].replace(
+        {
+            "Prefer not to answer": np.nan,
+            "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Age started wearing glasses or contact lenses | Instance 0"] = pd.to_numeric(df["Age started wearing glasses or contact lenses | Instance 0"])
+    return df
+
+#Breastfed as a baby | Instance 0
+def encode_breastfed(df):
+    df["Breastfed as a baby | Instance 0"].replace(
+        {
+            "Yes": 1,
+            "No": 0,
+            "Prefer not to answer": np.nan,
+            "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Breastfed as a baby | Instance 0"] = pd.to_numeric(df["Breastfed as a baby | Instance 0"])
+    return df
+    
+#Getting up in morning | Instance 0
+def encode_getting_up(df):
+    df["Getting up in morning | Instance 0"].replace(
+        {
+            "Not at all easy": 0,
+            "Not very easy": 1,
+            "Fairly easy": 2, 
+            "Very easy":3,
+            "Prefer not to answer": np.nan,
+            "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Getting up in morning | Instance 0"] = pd.to_numeric(df["Getting up in morning | Instance 0"])
+    return df
+
+#How are people in household related to participant | Instance 0
+def encode_household_relations(df):
+    df["How are people in household related to participant | Instance 0"].replace(
+        {
+            "Prefer not to answer": np.nan,
+        }, inplace=True
+    )
+
+    return df
+
+#Number in household | Instance 0
+def encode_num_in_household(df):
+    df["Number in household | Instance 0"].replace(
+        {
+            "Prefer not to answer": np.nan,
+            "Do not know": np.nan
+        }, inplace=True
+    )
+    df["Number in household | Instance 0"] = pd.to_numeric(df["Number in household | Instance 0"])
+    return df
+
+#Wears glasses or contact lenses | Instance 0
+def encode_glasses(df):
+    df["Wears glasses or contact lenses | Instance 0"].replace(
+        {
+            "Yes": 1,
+            "No": 0,
+            "Prefer not to answer": np.nan
+        }, inplace=True
+    )
+    df["Wears glasses or contact lenses | Instance 0"] = pd.to_numeric(df["Wears glasses or contact lenses | Instance 0"])
     return df
