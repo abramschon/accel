@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from skopt import BayesSearchCV
 from sklearn.model_selection import PredefinedSplit
 from sklearn.metrics import r2_score, mean_squared_error, explained_variance_score
