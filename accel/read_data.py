@@ -26,7 +26,7 @@ def prep_data(file_path : str,
     all_y = df[y_label]
     y = all_y[all_y<y_cutoff]
     if sets == None:
-        all_X = df[set(df.columns)-{y_label}]
+        all_X = df[set(df.columns)-{y_label, 'Unnamed: 0', 'Participant ID'}]
     elif len(sets) == 1:
         all_X = df[sets[0]]
     else: # multiple sets
@@ -151,7 +151,7 @@ def custom_encodings(df : pd.DataFrame):
             df = encode_time_outdoors_winter(df)
         elif col == "Time spent watching television (TV) | Instance 0":
             df = encode_time_tele(df)
-        elif col == "Tea intake":
+        elif col == "Tea intake | Instance 0":
             df = encode_tea_intake(df)
         elif col == "Cooked vegetable intake | Instance 0":
             df = encode_cooked_veg_intake(df)
@@ -215,7 +215,7 @@ def custom_encodings(df : pd.DataFrame):
             df = encode_health_rating(df)
         elif col == "Vascular/heart problems diagnosed by doctor | Instance 0":
             df = encode_heart(df)
-        elif col == "Age started wearing glasses or contact lenses":
+        elif col == "Age started wearing glasses or contact lenses | Instance 0":
             df = encode_glasses_age(df)
         elif col == "Breastfed as a baby | Instance 0":
             df = encode_breastfed(df)
@@ -227,7 +227,17 @@ def custom_encodings(df : pd.DataFrame):
             df = encode_num_in_household(df)
         elif col == "Wears glasses or contact lenses | Instance 0":
             df = encode_glasses(df)
-
+        elif col == "Sex":
+            df = encode_sex(df)
+        elif col == "Above moderate/vigorous recommendation | Instance 0":
+            df = encode_above_recommendation(df)
+        elif col == "Above moderate/vigorous/walking recommendation | Instance 0":
+            df = encode_above_walking_recommendation(df)
+        elif col == "Exposure to tobacco smoke at home | Instance 0":
+            df = encode_home_tobacco(df)
+        elif col == "Exposure to tobacco smoke outside home | Instance 0":
+            df = encode_outside_tobacco(df)
+        
     return df
 
 # CUSTOM ENCODINGS
@@ -296,15 +306,15 @@ def encode_time_tele(df : pd.DataFrame):
     return df
 
 
-# Tea intake
+# Tea intake | Instance 0
 def encode_tea_intake(df: pd.DataFrame):
-    df["Tea intake"].replace(
+    df["Tea intake | Instance 0"].replace(
         {"Less than one" : 0,
          "Prefer not to answer": np.nan,
          "Do not know": np.nan
         }, inplace=True
     )
-    df["Tea intake"] = pd.to_numeric(df["Tea intake"])
+    df["Tea intake | Instance 0"] = pd.to_numeric(df["Tea intake | Instance 0"])
     return df
 
 #Cooked vegetable intake | Instance 0
@@ -503,9 +513,9 @@ def encode_tiredness(df):
 #IPAQ activity group | Instance 0
 def encode_ipaq(df):
     df["IPAQ activity group | Instance 0"].replace(
-        {"low": 1,
-         "moderate": 2,
-         "high": 3
+        {"low": 0,
+         "moderate": 1,
+         "high": 2
         }, inplace=True
     )
     df["IPAQ activity group | Instance 0"] = pd.to_numeric(df["IPAQ activity group | Instance 0"])
@@ -767,3 +777,59 @@ def encode_glasses(df):
     )
     df["Wears glasses or contact lenses | Instance 0"] = pd.to_numeric(df["Wears glasses or contact lenses | Instance 0"])
     return df
+
+# Sex
+def encode_sex(df):
+    df["Sex"].replace(
+        {
+            "Female": 0,
+            "Male": 1,
+        }, inplace=True
+    )
+    df["Sex"] = pd.to_numeric(df["Sex"])
+    return df
+
+# Above moderate/vigorous recommendation | Instance 0
+def encode_above_recommendation(df):
+    df["Above moderate/vigorous recommendation | Instance 0"].replace(
+        {
+            "Yes": 1,
+            "No": 0,
+        }, inplace=True
+    )
+    df["Above moderate/vigorous recommendation | Instance 0"] = pd.to_numeric(df["Above moderate/vigorous recommendation | Instance 0"])
+    return df
+
+# Above moderate/vigorous/walking recommendation | Instance 0
+def encode_above_walking_recommendation(df):
+    df["Above moderate/vigorous/walking recommendation | Instance 0"].replace(
+        {
+            "Yes": 1,
+            "No": 0,
+        }, inplace=True
+    )
+    df["Above moderate/vigorous/walking recommendation | Instance 0"] = pd.to_numeric(df["Above moderate/vigorous/walking recommendation | Instance 0"])
+    return df
+
+# Exposure to tobacco smoke at home | Instance 0
+def encode_home_tobacco(df):
+    df["Exposure to tobacco smoke at home | Instance 0"].replace(
+        {
+            'Prefer not to answer' : np.nan,
+            'Do not know': np.nan,
+        }, inplace=True
+    )
+    df["Exposure to tobacco smoke at home | Instance 0"] = pd.to_numeric(df["Exposure to tobacco smoke at home | Instance 0"])
+    return df
+
+# Exposure to tobacco smoke outside home | Instance 0
+def encode_outside_tobacco(df):
+    df["Exposure to tobacco smoke outside home | Instance 0"].replace(
+        {
+            'Prefer not to answer' : np.nan,
+            'Do not know': np.nan,
+        }, inplace=True
+    )
+    df["Exposure to tobacco smoke outside home | Instance 0"] = pd.to_numeric(df["Exposure to tobacco smoke outside home | Instance 0"])
+    return df
+
