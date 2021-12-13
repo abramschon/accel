@@ -12,6 +12,7 @@ def prep_data(file_path : str,
               normalise : bool = False, # whether to transform numerical variables to z-vals
               one_hot : bool = False, # whether to apply one-hot encoding to categorical variables
               seed : int = 42,
+              nan_cutoff : int = 10000
              ):
     """
         Loads data in from the file_path, 
@@ -34,6 +35,16 @@ def prep_data(file_path : str,
     
     # apply custom encodings
     X = custom_encodings(X)
+    print(type(X))
+    
+    #remove columns with missing values above cutoff
+    num_of_missing = X.isnull().sum(axis=0)
+    cols_drop = []
+    for i in range(len(num_of_missing)):
+        if num_of_missing[i]>nan_cutoff:
+            cols_drop.append(X.columns[i])
+    X = X.drop(cols_drop, axis=1)
+            
     
     # split data into training and validation/testing (we will later divide validation and testing)
     X_train, X_val_test, y_train, y_val_test = train_test_split(X, y, train_size=train_perc, random_state=seed)
@@ -147,8 +158,8 @@ def custom_encodings(df : pd.DataFrame):
             df = encode_cooked_veg_intake(df)
         elif col == "Fresh fruit intake | Instance 0":
             df = encode_fresh_fruit_intake(df)
-#         elif col == "Oily fish intake | Instance 0":
-#             df = encode_oily_fish(df)
+        elif col == "Oily fish intake | Instance 0":
+             df = encode_oily_fish(df)
         elif col == "Salad / raw vegetable intake | Instance 0":
             df = encode_salad_intake(df)
         elif col == "Salt added to food":
