@@ -11,6 +11,7 @@ def score(y_true,y_pred):
     print("MSE is: ", mse)
     print("R2 is: ", r2)
     print("Explained variance is:", ev)
+    return r2_score, mean_squared_error, explained_variance_score
     
 def model_tune(model : "SKLearn model", 
                param_grid : dict, 
