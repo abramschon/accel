@@ -37,7 +37,7 @@ def prep_data(file_path : str,
     X = custom_encodings(X)
     
     #remove columns with missing values above cutoff
-    num_of_missing = X.isnull.sum(axis=0)
+    num_of_missing = X.isnull().sum(axis=0)
     cols_drop = []
     for i in range(len(num_of_missing)):
         if num_of_missing[i]>nan_cutoff:
