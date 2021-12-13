@@ -40,4 +40,4 @@ def model_tune(model : "SKLearn model",
     print("Best parameter combo:", opt.best_params_)
     # Having the following score
     print("Best validation MSE:", opt.best_score_)
-    return None
+    return opt
