@@ -35,7 +35,6 @@ def prep_data(file_path : str,
     
     # apply custom encodings
     X = custom_encodings(X)
-    print(type(X))
     
     #remove columns with missing values above cutoff
     num_of_missing = X.isnull().sum(axis=0)
