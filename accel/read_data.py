@@ -26,7 +26,7 @@ def prep_data(file_path : str,
     all_y = df[y_label]
     y = all_y[all_y<y_cutoff]
     if sets == None:
-        all_X = df[set(df.columns)-{y_label, 'Unnamed: 0', 'Participant ID'}]
+        all_X = df[set(df.columns)-{y_label, 'Unnamed: 0', 'Unnamed: 0.1', 'Participant ID'}]
     elif len(sets) == 1:
         all_X = df[sets[0]]
     else: # multiple sets

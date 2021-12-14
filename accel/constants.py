@@ -52,18 +52,19 @@ PHYSICAL = {'Above moderate/vigorous recommendation | Instance 0',
             'MET minutes per week for walking | Instance 0',
             'Summed days activity | Instance 0'}
 
-LIFESTYLE = {'Alcohol drinker status | Instance 0',
+SUBSTANCES = {'Alcohol drinker status | Instance 0',
              'Alcohol intake frequency. | Instance 0',
              'Exposure to tobacco smoke at home | Instance 0',
              'Exposure to tobacco smoke outside home | Instance 0',
-             'Length of mobile phone use | Instance 0',
-             'Sleep duration | Instance 0',
-             'Smoking status | Instance 0',
-             'Time spend outdoors in summer | Instance 0',
-             'Time spent outdoors in winter | Instance 0',
-             'Time spent using computer | Instance 0',
-             'Time spent watching television (TV) | Instance 0',
-             'Weekly usage of mobile phone in last 3 months | Instance 0'}
+             'Smoking status | Instance 0'}
+
+TECH= {'Length of mobile phone use | Instance 0',
+       'Weekly usage of mobile phone in last 3 months | Instance 0',
+       'Time spent using computer | Instance 0',
+       'Time spent watching television (TV) | Instance 0'}
+
+OUTDOORS = {'Time spend outdoors in summer | Instance 0',
+            'Time spent outdoors in winter | Instance 0'}
 
 HEALTH = {'Blood clot, DVT, bronchitis, emphysema, asthma, rhinitis, eczema, allergy diagnosed by doctor | Instance 0',
           'Cancer diagnosed by doctor | Instance 0',
@@ -76,7 +77,8 @@ HEALTH = {'Blood clot, DVT, bronchitis, emphysema, asthma, rhinitis, eczema, all
           'Vascular/heart problems diagnosed by doctor | Instance 0',
           'Health score'}
 
-OTHER = {'Age started wearing glasses or contact lenses | Instance 0',
+OTHER = {'Sleep duration | Instance 0',
+         'Age started wearing glasses or contact lenses | Instance 0',
          'Breastfed as a baby | Instance 0',
          'Getting up in morning | Instance 0',
          'How are people in household related to participant | Instance 0',
